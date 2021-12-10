@@ -1,0 +1,50 @@
+<html>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/dt/dt-1.10.9/datatables.min.css"/>
+    <script type="text/javascript" src="https://cdn.datatables.net/r/dt/dt-1.10.9/datatables.min.js"></script>
+
+        
+    <h1> TESTING </h1>
+    
+
+    <table id="photos" class="display" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>User ID</th>
+                <th>Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        
+    </table>
+<script type="text/javascript">
+    var arrayReturn = [];
+    $.ajax({
+        url: "https://jsonplaceholder.typicode.com/users",
+        async: false,
+        dataType: 'json',
+        success: function (data) {
+            for (var i = 0, len = data.length; i < len; i++) {
+                var name = data[i].name;
+                var id = data[i].id;
+                var body = data[i].email;
+                arrayReturn.push([id, name,body]);
+            }
+            inittable(arrayReturn);
+        }
+    });
+
+
+    function inittable(data) {	
+            $('#photos').DataTable( {
+                "aaData": data
+            } );
+        }
+</script>
+<h1> TESTING </h1>
+</html>
+
+
+<!-- Python Web Server to use local JSON data -->
